@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      docker: 18
+
+  build:
+    commands:
+      - mvn clean package
+artifacts:
+  files:
+    - entrepreneur-service/target/entrepreneur-service.jar
+  name: entrepreneur-service.jar
+  discard-paths: yes
+cache:
+  paths:
+    - '/root/.m2/**/*'
+    - maven

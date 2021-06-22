@@ -1,0 +1,4 @@
+#service:
+#  search:
+#    url: http://34.245.220.91:8983/solr
+
