@@ -5,7 +5,7 @@
 spring:
   data:
     mongodb:
-      uri: mongodb+srv://admin:rOmWe9JQVYD0P019@cluster0-p0dvq.mongodb.net/reading?retryWrites=true
+      uri: mongodb+srv://admin:rOmWe9JQVYD0P019@cluster0-p0dvq.mongodb.net/sgc?retryWrites=true
 server:
   port: 8081
 
