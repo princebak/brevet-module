@@ -22,8 +22,6 @@ public class DonationCase extends AbstractEntity {
     private Double raisedAmount;
     private Long totalDonatorNumber;
     private Boolean isUrgent;
-    private LocalDate created;
-    private LocalDate modified;
 
     public String getId() {
         return id;
@@ -65,11 +63,4 @@ public class DonationCase extends AbstractEntity {
         return isUrgent;
     }
 
-    public LocalDate getCreated() {
-        return created;
-    }
-
-    public LocalDate getModified() {
-        return modified;
-    }
 }
