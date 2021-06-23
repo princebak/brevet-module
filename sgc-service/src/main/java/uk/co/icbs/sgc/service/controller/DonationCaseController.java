@@ -42,11 +42,11 @@ public class DonationCaseController {
         return donationCaseService.findById(id);
     }
 
-    @GetMapping("/category")
-    public ResponseModel<DonationCase> findAllByCategory(HttpServletRequest request,
+    @GetMapping("/category/{category}")
+    public ResponseModel<DonationCase> findAllByCategory(HttpServletRequest request, @PathVariable String category,
                                                     @RequestParam(name = "page", defaultValue = "0", required = false) int page,
                                                     @RequestParam(name = "size", defaultValue = "4", required = false) int size){
-        String category = request.getHeader("category");
+//        String category = request.getHeader("category");
         LOGGER.info("call to findAllByCategory : " + category);
         return donationCaseService.findAllByCategory(category, page, size);
     }
@@ -66,9 +66,10 @@ public class DonationCaseController {
         return donationCaseService.save(donationCase);
     }
 
-    @PutMapping("")
+    @PostMapping("/update")
     public void update(@RequestBody DonationCase donationCase){
-        LOGGER.info("call to update: " + donationCase);
+        LOGGER.info("call to update: " + donationCase.getId());
         donationCaseService.update(donationCase);
     }
+
 }
