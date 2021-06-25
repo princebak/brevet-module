@@ -34,6 +34,7 @@ public class DonationCaseManager implements DonationCaseService {
             donationCase.setStatus((donationCase.getStatus() == null ? Status.CREATED: donationCase.getStatus()));
             donationCase.getMetadata().setCreated(new Date());
         }
+        assert donationCase != null;
         return donationCaseRepository.save(donationCase);
     }
 
@@ -77,8 +78,9 @@ public class DonationCaseManager implements DonationCaseService {
     @Override
     public DonationCase update(DonationCase donationCase) {
         if(donationCase != null){
-            donationCase.getMetadata().setUpdated(new Date());
-            DonationCase updatedDonationCase = donationCaseRepository.save(donationCase);
+            DonationCase oldDonationCase = donationCaseRepository.findById(donationCase.getId()).get();
+            oldDonationCase.getMetadata().setUpdated(new Date());
+            DonationCase updatedDonationCase = donationCaseRepository.save(oldDonationCase);
             return updatedDonationCase;
         }
 

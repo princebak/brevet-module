@@ -1,13 +1,13 @@
 package uk.co.icbs.sgc.service.model;
 
+import uk.co.icbs.common.service.model.AbstractEntity;
+
 import java.time.LocalDate;
 
-public class Step {
+public class Step extends AbstractEntity {
     private String title;
     private String description;
     private String status;
-    private LocalDate created;
-    private LocalDate modified;
 
     public String getTitle() {
         return title;
@@ -19,13 +19,5 @@ public class Step {
 
     public String getStatus() {
         return status;
-    }
-
-    public LocalDate getCreated() {
-        return created;
-    }
-
-    public LocalDate getModified() {
-        return modified;
     }
 }

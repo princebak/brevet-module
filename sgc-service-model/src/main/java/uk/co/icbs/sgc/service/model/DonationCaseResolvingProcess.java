@@ -17,8 +17,6 @@ public class DonationCaseResolvingProcess extends AbstractEntity {
     private String description;
     private String donationCaseTitle;
     private Status status;
-    private LocalDate created;
-    private LocalDate modified;
     private ArrayList<Step> steps;
 
     public String getId() {
@@ -35,14 +33,6 @@ public class DonationCaseResolvingProcess extends AbstractEntity {
 
     public Status getStatus() {
         return status;
-    }
-
-    public LocalDate getCreated() {
-        return created;
-    }
-
-    public LocalDate getModified() {
-        return modified;
     }
 
     public ArrayList<Step> getSteps() {

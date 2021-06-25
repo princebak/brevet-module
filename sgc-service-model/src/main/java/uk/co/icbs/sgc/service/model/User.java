@@ -8,7 +8,6 @@ public class User extends AbstractEntity{
     private String  email;
     private String  password;
     private String  phone;
-    private String  type;
 
     public String getFirst() {
         return first;
@@ -28,9 +27,5 @@ public class User extends AbstractEntity{
 
     public String getPhone() {
         return phone;
-    }
-
-    public String getType() {
-        return type;
     }
 }

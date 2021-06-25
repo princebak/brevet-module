@@ -15,7 +15,6 @@ public class Donation extends AbstractEntity {
     private String donatorName;
     private String donationCaseTitle;
     private Double amount;
-    private LocalDate created;
 
     public String getId() {
         return id;
@@ -33,7 +32,4 @@ public class Donation extends AbstractEntity {
         return amount;
     }
 
-    public LocalDate getCreated() {
-        return created;
-    }
 }

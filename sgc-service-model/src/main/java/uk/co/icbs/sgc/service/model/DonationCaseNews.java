@@ -16,8 +16,6 @@ public class DonationCaseNews extends AbstractEntity {
     private String donationCaseTitle;
     private String recipientName;
     private String donatorName;
-    private LocalDate created;
-    private LocalDate modified;
 
     public String getId() {
         return id;
@@ -37,13 +35,5 @@ public class DonationCaseNews extends AbstractEntity {
 
     public String getDonatorName() {
         return donatorName;
-    }
-
-    public LocalDate getCreated() {
-        return created;
-    }
-
-    public LocalDate getModified() {
-        return modified;
     }
 }
