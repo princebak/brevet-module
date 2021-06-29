@@ -63,4 +63,11 @@ public class DonationCase extends AbstractEntity {
         return isUrgent;
     }
 
+    public void setRaisedAmount(Double raisedAmount) {
+        this.raisedAmount = raisedAmount;
+    }
+
+    public void setTotalDonatorNumber(Long totalDonatorNumber) {
+        this.totalDonatorNumber = totalDonatorNumber;
+    }
 }

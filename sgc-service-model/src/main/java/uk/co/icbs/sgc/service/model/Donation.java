@@ -5,14 +5,15 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import uk.co.icbs.common.service.model.AbstractEntity;
 
-import java.time.LocalDate;
 
 @Data
 @Document(collection = "donations")
 public class Donation extends AbstractEntity {
     @Id
     private String id;
+    private String donatorId;
     private String donatorName;
+    private String donationCaseId;
     private String donationCaseTitle;
     private Double amount;
 
@@ -24,12 +25,19 @@ public class Donation extends AbstractEntity {
         return donatorName;
     }
 
-    public String getDonationCasetitle() {
-        return donationCaseTitle;
-    }
-
     public Double getAmount() {
         return amount;
     }
 
+    public String getDonatorId() {
+        return donatorId;
+    }
+
+    public String getDonationCaseId() {
+        return donationCaseId;
+    }
+
+    public String getDonationCaseTitle() {
+        return donationCaseTitle;
+    }
 }

@@ -3,7 +3,10 @@ package uk.co.icbs.sgc.service.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
+import uk.co.icbs.sgc.service.api.DonationCaseService;
+import uk.co.icbs.sgc.service.api.DonationService;
 import uk.co.icbs.sgc.service.api.DonatorService;
+import uk.co.icbs.sgc.service.model.Donation;
 import uk.co.icbs.sgc.service.model.DonationCase;
 import uk.co.icbs.sgc.service.model.Donator;
 
@@ -15,7 +18,7 @@ public class DonatorController {
 
     private final DonatorService donatorService;
 
-    public DonatorController(DonatorService donatorService) {
+    public DonatorController(DonatorService donatorService,DonationCaseService donationCaseService) {
         this.donatorService = donatorService;
     }
 
@@ -40,13 +43,13 @@ public class DonatorController {
     @PostMapping("")
     public @ResponseBody
     Donator save(@RequestBody Donator donator){
-        LOGGER.info("call to save: " + donator);
+        LOGGER.info("call to save donator: " + donator.getEmail());
         return donatorService.save(donator);
     }
 
     @PostMapping("/update")
     public void update(@RequestBody Donator donator){
-        LOGGER.info("call to update: " + donator.getId());
+        LOGGER.info("call to update donator: " + donator.getId());
         donatorService.update(donator);
     }
 }
