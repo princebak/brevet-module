@@ -15,6 +15,7 @@ public class DonationCaseResolvingProcess extends AbstractEntity {
     @Id
     private String id;
     private String description;
+    private String donationCaseId;
     private String donationCaseTitle;
     private Status status;
     private ArrayList<Step> steps;
@@ -37,5 +38,13 @@ public class DonationCaseResolvingProcess extends AbstractEntity {
 
     public ArrayList<Step> getSteps() {
         return steps;
+    }
+
+    public String getDonationCaseId() {
+        return donationCaseId;
+    }
+
+    public String getDonationCaseTitle() {
+        return donationCaseTitle;
     }
 }

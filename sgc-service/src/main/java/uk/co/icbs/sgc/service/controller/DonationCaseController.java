@@ -50,7 +50,7 @@ public class DonationCaseController {
     public ResponseModel<DonationCase> findAllByCategory(@PathVariable String category,
                                                     @RequestParam(name = "page", defaultValue = "0", required = false) int page,
                                                     @RequestParam(name = "size", defaultValue = "4", required = false) int size){
-//        String category = request.getHeader("category");
+
         LOGGER.info("call to findAllByCategory : " + category);
         return donationCaseService.findAllByCategory(category, page, size);
     }
@@ -59,16 +59,16 @@ public class DonationCaseController {
     public ResponseModel<DonationCase> findAllByRecipientName(@PathVariable String recipient,
                                                          @RequestParam(name = "page", defaultValue = "0", required = false) int page,
                                                          @RequestParam(name = "size", defaultValue = "4", required = false) int size){
-    //    String recipient = request.getHeader("recipient");
+
         LOGGER.info("call to findAllByRecipientName : " + recipient);
-        return donationCaseService.findAllByRecipientName(recipient, page, size);
+        return donationCaseService.findAllByRecipientId(recipient, page, size);
     }
 
     @GetMapping("/donator/{id}")
     public List<DonationCase> findAllByDonatorId(@PathVariable String id,
                                                  @RequestParam(name = "page", defaultValue = "0", required = false) int page,
                                                  @RequestParam(name = "size", defaultValue = "4", required = false) int size){
-       // String donator = request.getHeader("donator");
+
         LOGGER.info("call to findAllByDonatorId : " + id);
 
         return donationCaseService.findAllByDonatorId(id, PageRequest.of(page, size));

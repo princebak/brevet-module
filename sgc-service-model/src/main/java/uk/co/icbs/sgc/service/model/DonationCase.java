@@ -17,6 +17,7 @@ public class DonationCase extends AbstractEntity {
     private String description;
     private String category;
     private Status status;
+    private String recipientId;
     private String recipientName;
     private Double aimedAmount;
     private Double raisedAmount;
@@ -69,5 +70,9 @@ public class DonationCase extends AbstractEntity {
 
     public void setTotalDonatorNumber(Long totalDonatorNumber) {
         this.totalDonatorNumber = totalDonatorNumber;
+    }
+
+    public String getRecipientId() {
+        return recipientId;
     }
 }

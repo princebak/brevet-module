@@ -34,6 +34,7 @@ public class DonationCaseManager implements DonationCaseService {
 
     @Override
     public DonationCase save(DonationCase donationCase) {
+        logger.info("call to save");
         if(donationCase != null){
             donationCase.setStatus((donationCase.getStatus() == null ? Status.CREATED: donationCase.getStatus()));
             donationCase.getMetadata().setCreated(new Date());
@@ -46,23 +47,22 @@ public class DonationCaseManager implements DonationCaseService {
     @Override
     public ResponseModel<DonationCase> findAll(Pageable pageable) {
         Page<DonationCase> donationCases = donationCaseRepository.findAll(pageable);
-        //logger.info("totalElements : " + books.getTotalElements());
         return new ResponseModel<>(donationCases.getTotalPages(), donationCases.getTotalElements(), donationCases.getContent());
     }
 
     @Override
     public ResponseModel<DonationCase> findAllByCategory(String category, int page, int size) {
-        return filterDonationcases(category, page, size);
+        if(category != "" && category != null){
+            Page<DonationCase> donationCases = donationCaseRepository.findAllByCategory(category, PageRequest.of(page, size));
+            return new ResponseModel<>(donationCases.getTotalPages(), donationCases.getTotalElements(), donationCases.getContent());
+        }
+        return null;
     }
 
     @Override
-    public ResponseModel<DonationCase> findAllByRecipientName(String recipientName, int page, int size) {
-        return filterDonationcases(recipientName, page, size);
-    }
-
-    private ResponseModel<DonationCase> filterDonationcases(String filteringField, int page, int size) {
-        if(filteringField != "" && filteringField != null){
-            Page<DonationCase> donationCases = donationCaseRepository.findAllByCategory(filteringField, PageRequest.of(page, size));
+    public ResponseModel<DonationCase> findAllByRecipientId(String recipientId, int page, int size) {
+        if(recipientId != "" && recipientId != null){
+            Page<DonationCase> donationCases = donationCaseRepository.findAllByRecipientId(recipientId, PageRequest.of(page, size));
             return new ResponseModel<>(donationCases.getTotalPages(), donationCases.getTotalElements(), donationCases.getContent());
         }
         return null;

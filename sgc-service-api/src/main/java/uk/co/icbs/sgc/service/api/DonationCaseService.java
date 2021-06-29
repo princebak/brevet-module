@@ -13,7 +13,7 @@ import java.util.List;
 public interface DonationCaseService extends AbstractService<DonationCase> {
     ResponseModel<DonationCase> findAll(Pageable pageable);
     ResponseModel<DonationCase> findAllByCategory(String category, int page, int size);
-    ResponseModel<DonationCase> findAllByRecipientName(String recipientName, int page, int size);
+    ResponseModel<DonationCase> findAllByRecipientId(String recipientName, int page, int size);
 
     List<DonationCase> findAllByDonatorId(String id, Pageable pageable);
 }

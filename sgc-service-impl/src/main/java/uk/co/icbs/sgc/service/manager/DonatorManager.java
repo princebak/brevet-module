@@ -35,6 +35,7 @@ public class DonatorManager implements DonatorService {
 
     @Override
     public Donator update(Donator donator) {
+        logger.info("call to save");
         if(donator != null){
             Donator oldDonator = donatorRepository.findById(donator.getId()).get();
             oldDonator.getMetadata().setUpdated(new Date());
@@ -79,7 +80,6 @@ public class DonatorManager implements DonatorService {
     @Override
     public ResponseModel<Donator> findAll(Pageable pageable) {
         Page<Donator> donators = donatorRepository.findAll(pageable);
-        //logger.info("totalElements : " + books.getTotalElements());
         return new ResponseModel<>(donators.getTotalPages(), donators.getTotalElements(), donators.getContent());
     }
 

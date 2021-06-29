@@ -5,11 +5,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import uk.co.icbs.common.service.model.Status;
 import uk.co.icbs.sgc.service.api.DonationService;
 import uk.co.icbs.sgc.service.api.ResponseModel;
 import uk.co.icbs.sgc.service.model.Donation;
-import uk.co.icbs.sgc.service.model.DonationCase;
 import uk.co.icbs.sgc.service.repository.DonationRepository;
 
 import java.util.Date;
@@ -28,7 +26,6 @@ public class DonationManager implements DonationService {
     @Override
     public ResponseModel<Donation> findAll(Pageable pageable) {
         Page<Donation> donations = donationRepository.findAll(pageable);
-        //logger.info("totalElements : " + books.getTotalElements());
         return new ResponseModel<>(donations.getTotalPages(), donations.getTotalElements(), donations.getContent());
     }
 
@@ -44,6 +41,7 @@ public class DonationManager implements DonationService {
 
     @Override
     public Donation save(Donation donation) {
+        logger.info("call to save");
         if(donation != null){
             donation.getMetadata().setCreated(new Date());
             return donationRepository.save(donation);
