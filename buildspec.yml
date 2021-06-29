@@ -10,8 +10,8 @@ phases:
       - mvn clean package
 artifacts:
   files:
-    - entrepreneur-service/target/entrepreneur-service.jar
-  name: entrepreneur-service.jar
+    - sgc-service/target/sgc-service.jar
+  name: sgc-service.jar
   discard-paths: yes
 cache:
   paths:
