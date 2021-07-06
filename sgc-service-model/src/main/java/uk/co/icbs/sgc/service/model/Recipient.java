@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import uk.co.icbs.common.service.model.Address;
+import uk.co.icbs.common.service.model.Status;
 
 
 @Data
@@ -15,6 +16,7 @@ public class Recipient extends User {
     private String instituteName;
     private String instituteDescription;
     private Address address;
+    private Status status;
 
     public String getId() {
         return id;
@@ -34,5 +36,9 @@ public class Recipient extends User {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Status getStatus() {
+        return status;
     }
 }

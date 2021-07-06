@@ -1,13 +1,14 @@
 package uk.co.icbs.sgc.service.model;
 
 import uk.co.icbs.common.service.model.AbstractEntity;
+import uk.co.icbs.common.service.model.Status;
 
 import java.time.LocalDate;
 
 public class Step extends AbstractEntity {
     private String title;
     private String description;
-    private String status;
+    private Status status;
 
     public String getTitle() {
         return title;
@@ -17,7 +18,7 @@ public class Step extends AbstractEntity {
         return description;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 }

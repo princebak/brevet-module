@@ -65,13 +65,11 @@ public class DonationCaseController {
     }
 
     @GetMapping("/donator/{id}")
-    public List<DonationCase> findAllByDonatorId(@PathVariable String id,
-                                                 @RequestParam(name = "page", defaultValue = "0", required = false) int page,
-                                                 @RequestParam(name = "size", defaultValue = "4", required = false) int size){
+    public List<DonationCase> findAllByDonatorId(@PathVariable String id){
 
         LOGGER.info("call to findAllByDonatorId : " + id);
 
-        return donationCaseService.findAllByDonatorId(id, PageRequest.of(page, size));
+        return donationCaseService.findAllByDonatorId(id);
     }
 
     @PostMapping("")
@@ -81,9 +79,9 @@ public class DonationCaseController {
     }
 
     @PostMapping("/update")
-    public void update(@RequestBody DonationCase donationCase){
+    public DonationCase update(@RequestBody DonationCase donationCase){
         LOGGER.info("call to update: " + donationCase.getId());
-        donationCaseService.update(donationCase);
+        return donationCaseService.update(donationCase);
     }
 
 }

@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import uk.co.icbs.sgc.service.api.DonationService;
 import uk.co.icbs.sgc.service.api.ResponseModel;
 import uk.co.icbs.sgc.service.model.Donation;
+import uk.co.icbs.sgc.service.model.DonationCase;
+import uk.co.icbs.sgc.service.model.Donator;
 import uk.co.icbs.sgc.service.repository.DonationRepository;
 
 import java.util.Date;
@@ -30,13 +32,14 @@ public class DonationManager implements DonationService {
     }
 
     @Override
-    public ResponseModel<Donation> findAllByDonatorId(String donatorId, Pageable pageable) {
-        return null;
+    public List<Donation> findAllByDonatorId(String donatorId) {
+        return donationRepository.findAllByDonatorId(donatorId);
     }
 
     @Override
     public ResponseModel<Donation> findAllByDonationCaseId(String donationCaseId, Pageable pageable) {
-        return null;
+        Page<Donation> donations = donationRepository.findAllByDonationCaseId(donationCaseId,pageable);
+        return new ResponseModel<>(donations.getTotalPages(), donations.getTotalElements(), donations.getContent());
     }
 
     @Override
@@ -52,16 +55,33 @@ public class DonationManager implements DonationService {
 
     @Override
     public Donation update(Donation donation) {
+        if(donation != null){
+            Donation oldDonation = donationRepository.findById(donation.getId()).get();
+            if(oldDonation != null){
+                donation.getMetadata().setCreated(oldDonation.getMetadata().getCreated());
+                donation.getMetadata().setUpdated(new Date());
+
+                return donationRepository.save(donation);
+            }
+        }
+
         return null;
     }
 
     @Override
     public List<Donation> findAll() {
-        return null;
+        return donationRepository.findAll();
     }
 
     @Override
     public Donation findById(String id) {
-        return null;
+        Donation donation = donationRepository.findById(id).isPresent() ? donationRepository.findById(id).get() : null;
+
+        if(donation != null){
+            int view = donation.getMetadata().getView() + 1 ;
+            donation.getMetadata().setView(view);
+            donation = update(donation);
+        }
+        return donation;
     }
 }

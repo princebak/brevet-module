@@ -15,5 +15,5 @@ public interface DonationCaseService extends AbstractService<DonationCase> {
     ResponseModel<DonationCase> findAllByCategory(String category, int page, int size);
     ResponseModel<DonationCase> findAllByRecipientId(String recipientName, int page, int size);
 
-    List<DonationCase> findAllByDonatorId(String id, Pageable pageable);
+    List<DonationCase> findAllByDonatorId(String id);
 }

@@ -80,7 +80,7 @@ public class DonationCaseManager implements DonationCaseService {
         return donationCase;
     }
     @Override
-    public List<DonationCase> findAllByDonatorId(String donatorId,Pageable pageable) {
+    public List<DonationCase> findAllByDonatorId(String donatorId) {
         List<Donation> donations = donationRepository.findAllByDonatorId(donatorId);
 
         List<DonationCase> donationCases = donations.stream()

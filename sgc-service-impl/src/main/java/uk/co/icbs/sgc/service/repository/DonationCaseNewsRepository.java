@@ -12,5 +12,7 @@ import java.util.Optional;
 @Repository
 public interface DonationCaseNewsRepository extends MongoRepository<DonationCaseNews,String> {
     Page<DonationCaseNews> findAllByDonationCaseId(@Param("donationCaseId") String donationCaseId, Pageable pageable);
+    Page<DonationCaseNews> findAllByDonatorId(@Param("donatorId") String donationCaseId, Pageable pageable);
+    Page<DonationCaseNews> findAllByRecipientId(@Param("recipientId") String donationCaseId, Pageable pageable);
     Optional<DonationCaseNews> findById(@Param("id") String id);
 }

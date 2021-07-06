@@ -25,6 +25,7 @@ public class DonatorManager implements DonatorService {
 
     @Override
     public Donator save(Donator donator) {
+        logger.info("call to save");
         if(donator != null){
             donator.getMetadata().setCreated(new Date());
             return donatorRepository.save(donator);
@@ -35,14 +36,15 @@ public class DonatorManager implements DonatorService {
 
     @Override
     public Donator update(Donator donator) {
-        logger.info("call to save");
+        logger.info("call to update");
         if(donator != null){
             Donator oldDonator = donatorRepository.findById(donator.getId()).get();
-            oldDonator.getMetadata().setUpdated(new Date());
-            donator.getMetadata().setUpdated(oldDonator.getMetadata().getUpdated());
+            if(oldDonator != null){
+                donator.getMetadata().setCreated(oldDonator.getMetadata().getCreated());
+                donator.getMetadata().setUpdated(new Date());
 
-            Donator updatedDonator = donatorRepository.save(donator);
-            return updatedDonator;
+                return  donatorRepository.save(donator);
+            }
         }
 
         return null;

@@ -10,6 +10,8 @@ import uk.co.icbs.sgc.service.model.Donation;
 import uk.co.icbs.sgc.service.model.DonationCase;
 import uk.co.icbs.sgc.service.model.Donator;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/donators")
 public class DonatorController {
@@ -25,6 +27,12 @@ public class DonatorController {
     @GetMapping("/health")
     public String health() {
         return "ok";
+    }
+
+    @GetMapping("")
+    public List<Donator> findAll(){
+        LOGGER.info("call to findAll ");
+        return donatorService.findAll();
     }
 
     @GetMapping("/{id}")
@@ -48,8 +56,8 @@ public class DonatorController {
     }
 
     @PostMapping("/update")
-    public void update(@RequestBody Donator donator){
+    public Donator update(@RequestBody Donator donator){
         LOGGER.info("call to update donator: " + donator.getId());
-        donatorService.update(donator);
+        return donatorService.update(donator);
     }
 }
