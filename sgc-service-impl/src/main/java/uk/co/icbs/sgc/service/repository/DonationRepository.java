@@ -5,7 +5,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import uk.co.icbs.sgc.service.api.ResponseModel;
 import uk.co.icbs.sgc.service.model.Donation;
 
 import java.util.List;

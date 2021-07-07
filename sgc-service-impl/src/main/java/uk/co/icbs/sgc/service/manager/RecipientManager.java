@@ -28,9 +28,13 @@ public class RecipientManager implements RecipientService {
     public Recipient save(Recipient recipient) {
         logger.info("call to save");
         if(recipient != null){
-            recipient.setStatus((recipient.getStatus() == null ? Status.CREATED: recipient.getStatus()));
-            recipient.getMetadata().setCreated(new Date());
-            return recipientRepository.save(recipient);
+            try {
+                recipient.setStatus((recipient.getStatus() == null ? Status.CREATED: recipient.getStatus()));
+                recipient.getMetadata().setCreated(new Date());
+                return recipientRepository.save(recipient);
+            }catch (Exception e){
+                logger.info(e.getMessage());
+            }
         }
 
         return null;
@@ -39,12 +43,16 @@ public class RecipientManager implements RecipientService {
     @Override
     public Recipient update(Recipient recipient) {
         if(recipient != null){
-            Recipient oldrecipient = recipientRepository.findById(recipient.getId()).get();
-            if(oldrecipient != null){
-                recipient.getMetadata().setCreated(oldrecipient.getMetadata().getCreated());
-                recipient.getMetadata().setUpdated(new Date());
+            try {
+                Recipient oldrecipient = recipientRepository.findById(recipient.getId()).get();
+                if(oldrecipient != null){
+                    recipient.getMetadata().setCreated(oldrecipient.getMetadata().getCreated());
+                    recipient.getMetadata().setUpdated(new Date());
 
-                return recipientRepository.save(recipient);
+                    return recipientRepository.save(recipient);
+                }
+            }catch (Exception e){
+                logger.info(e.getMessage());
             }
         }
 
@@ -53,24 +61,39 @@ public class RecipientManager implements RecipientService {
 
     @Override
     public List<Recipient> findAll() {
-        return recipientRepository.findAll();
+        try {
+            return recipientRepository.findAll();
+        }catch (Exception e){
+            logger.info(e.getMessage());
+        }
+        return null;
     }
 
     @Override
     public ResponseModel<Recipient> findAll(Pageable pageable) {
-        Page<Recipient> recipients = recipientRepository.findAll(pageable);
-        return new ResponseModel<>(recipients.getTotalPages(), recipients.getTotalElements(), recipients.getContent());
+        try {
+            Page<Recipient> recipients = recipientRepository.findAll(pageable);
+            return new ResponseModel<>(recipients.getTotalPages(), recipients.getTotalElements(), recipients.getContent());
+        }catch (Exception e){
+            logger.info(e.getMessage());
+        }
+        return null;
     }
 
     @Override
     public Recipient findById(String id) {
-        Recipient recipient = recipientRepository.findById(id).isPresent() ? recipientRepository.findById(id).get() : null;
+        try {
+            Recipient recipient = recipientRepository.findById(id).isPresent() ? recipientRepository.findById(id).get() : null;
 
-        if(recipient != null){
-            int view = recipient.getMetadata().getView() + 1 ;
-            recipient.getMetadata().setView(view);
-            recipient = update(recipient);
+            if(recipient != null){
+                int view = recipient.getMetadata().getView() + 1 ;
+                recipient.getMetadata().setView(view);
+                recipient = update(recipient);
+            }
+            return recipient;
+        }catch (Exception e){
+            logger.info(e.getMessage());
         }
-        return recipient;
+        return null;
     }
 }

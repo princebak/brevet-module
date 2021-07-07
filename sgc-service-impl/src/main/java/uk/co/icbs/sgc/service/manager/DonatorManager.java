@@ -27,8 +27,12 @@ public class DonatorManager implements DonatorService {
     public Donator save(Donator donator) {
         logger.info("call to save");
         if(donator != null){
-            donator.getMetadata().setCreated(new Date());
-            return donatorRepository.save(donator);
+            try {
+                donator.getMetadata().setCreated(new Date());
+                return donatorRepository.save(donator);
+            }catch (Exception e){
+                logger.info(e.getMessage());
+            }
         }
 
         return null;
@@ -38,12 +42,16 @@ public class DonatorManager implements DonatorService {
     public Donator update(Donator donator) {
         logger.info("call to update");
         if(donator != null){
-            Donator oldDonator = donatorRepository.findById(donator.getId()).get();
-            if(oldDonator != null){
-                donator.getMetadata().setCreated(oldDonator.getMetadata().getCreated());
-                donator.getMetadata().setUpdated(new Date());
+            try {
+                Donator oldDonator = donatorRepository.findById(donator.getId()).get();
+                if(oldDonator != null){
+                    donator.getMetadata().setCreated(oldDonator.getMetadata().getCreated());
+                    donator.getMetadata().setUpdated(new Date());
 
-                return  donatorRepository.save(donator);
+                    return  donatorRepository.save(donator);
+                }
+            }catch (Exception e){
+                logger.info(e.getMessage());
             }
         }
 
@@ -52,37 +60,57 @@ public class DonatorManager implements DonatorService {
 
     @Override
     public List<Donator> findAll() {
-        return donatorRepository.findAll();
+        try {
+            return donatorRepository.findAll();
+        }catch (Exception e){
+            logger.info(e.getMessage());
+        }
+        return null;
     }
 
     @Override
     public Donator findById(String id) {
-        Donator donator = donatorRepository.findById(id).isPresent() ? donatorRepository.findById(id).get() : null;
+        try {
+            Donator donator = donatorRepository.findById(id).isPresent() ? donatorRepository.findById(id).get() : null;
 
-        if(donator != null){
-            int view = donator.getMetadata().getView() + 1 ;
-            donator.getMetadata().setView(view);
-            donator = update(donator);
+            if(donator != null){
+                int view = donator.getMetadata().getView() + 1 ;
+                donator.getMetadata().setView(view);
+                donator = update(donator);
+            }
+            return donator;
+        }catch (Exception e){
+            logger.info(e.getMessage());
         }
-        return donator;
+        return null;
     }
 
     @Override
     public Donator findByEmail(String email) {
-        Donator donator = donatorRepository.findByEmail(email).isPresent() ? donatorRepository.findByEmail(email).get() : null;
+        try {
+            Donator donator = donatorRepository.findByEmail(email).isPresent() ? donatorRepository.findByEmail(email).get() : null;
 
-        if(donator != null){
-            int view = donator.getMetadata().getView() + 1 ;
-            donator.getMetadata().setView(view);
-            donator = update(donator);
+            if(donator != null){
+                int view = donator.getMetadata().getView() + 1 ;
+                donator.getMetadata().setView(view);
+                donator = update(donator);
+            }
+            return donator;
+        }catch (Exception e){
+            logger.info(e.getMessage());
         }
-        return donator;
+        return null;
     }
 
     @Override
     public ResponseModel<Donator> findAll(Pageable pageable) {
-        Page<Donator> donators = donatorRepository.findAll(pageable);
-        return new ResponseModel<>(donators.getTotalPages(), donators.getTotalElements(), donators.getContent());
+        try {
+            Page<Donator> donators = donatorRepository.findAll(pageable);
+            return new ResponseModel<>(donators.getTotalPages(), donators.getTotalElements(), donators.getContent());
+        }catch (Exception e){
+            logger.info(e.getMessage());
+        }
+        return null;
     }
 
 }
