@@ -10,6 +10,8 @@ import uk.co.icbs.sgc.service.model.Recipient;
 
 import java.util.List;
 
+@RestController
+@RequestMapping("/api/v1/recipients")
 public class RecipientController {
     private static final Logger LOGGER = LoggerFactory.getLogger(RecipientController.class);
     private final RecipientService recipientService;

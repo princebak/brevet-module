@@ -5,16 +5,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 import uk.co.icbs.common.service.model.Status;
 import uk.co.icbs.sgc.service.api.DonationCaseResolvingProcessService;
 import uk.co.icbs.sgc.service.api.ResponseModel;
-import uk.co.icbs.sgc.service.model.DonationCase;
 import uk.co.icbs.sgc.service.model.DonationCaseResolvingProcess;
 import uk.co.icbs.sgc.service.repository.DonationCaseResolvingProcessRepository;
 
 import java.util.Date;
 import java.util.List;
 
+@Service
 public class DonationCaseResolvingProcessManager implements DonationCaseResolvingProcessService {
 
     private final static Logger logger = LoggerFactory.getLogger(DonationCaseManager.class);

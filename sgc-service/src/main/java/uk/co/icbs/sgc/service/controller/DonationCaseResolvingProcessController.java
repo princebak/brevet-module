@@ -6,11 +6,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 import uk.co.icbs.sgc.service.api.DonationCaseResolvingProcessService;
 import uk.co.icbs.sgc.service.api.ResponseModel;
-import uk.co.icbs.sgc.service.model.DonationCaseNews;
 import uk.co.icbs.sgc.service.model.DonationCaseResolvingProcess;
 
 import java.util.List;
 
+@RestController
+@RequestMapping("/api/v1/donation-case-resolving-process")
 public class DonationCaseResolvingProcessController {
     private static final Logger LOGGER = LoggerFactory.getLogger(DonationCaseResolvingProcessController.class);
     private final DonationCaseResolvingProcessService donationCaseResolvingProcessService;

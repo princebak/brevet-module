@@ -6,7 +6,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 import uk.co.icbs.sgc.service.api.DonationCaseNewsService;
 import uk.co.icbs.sgc.service.api.ResponseModel;
-import uk.co.icbs.sgc.service.model.DonationCase;
 import uk.co.icbs.sgc.service.model.DonationCaseNews;
 
 import java.util.List;

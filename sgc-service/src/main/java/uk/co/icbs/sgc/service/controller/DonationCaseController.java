@@ -9,7 +9,6 @@ import uk.co.icbs.sgc.service.api.DonationCaseService;
 import uk.co.icbs.sgc.service.api.DonatorService;
 import uk.co.icbs.sgc.service.api.ResponseModel;
 import uk.co.icbs.sgc.service.model.DonationCase;
-import uk.co.icbs.sgc.service.model.Donator;
 
 import java.util.List;
 
