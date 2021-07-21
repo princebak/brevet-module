@@ -15,6 +15,8 @@ public class Recipient extends User {
     private String recipientType;
     private String instituteName;
     private String instituteDescription;
+    private String bankName;
+    private String accountNumber;
     private Address address;
     private Status status;
 
@@ -36,6 +38,14 @@ public class Recipient extends User {
 
     public Address getAddress() {
         return address;
+    }
+
+    public String getBankName() {
+        return bankName;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
     }
 
     public Status getStatus() {

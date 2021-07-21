@@ -96,4 +96,21 @@ public class RecipientManager implements RecipientService {
         }
         return null;
     }
+
+    @Override
+    public Recipient findByInstituteName(String name) {
+        try {
+            Recipient recipient = recipientRepository.findByInstituteName(name).isPresent() ? recipientRepository.findByInstituteName(name).get() : null;
+
+            if(recipient != null){
+                int view = recipient.getMetadata().getView() + 1 ;
+                recipient.getMetadata().setView(view);
+                recipient = update(recipient);
+            }
+            return recipient;
+        }catch (Exception e){
+            logger.info(e.getMessage());
+        }
+        return null;
+    }
 }

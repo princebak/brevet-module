@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface RecipientRepository extends MongoRepository<Recipient,String>{
     Optional<Recipient> findById(@Param("id") String id);
+    Optional<Recipient> findByInstituteName(@Param("name") String name);
 }

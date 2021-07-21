@@ -44,6 +44,12 @@ public class RecipientController {
         return recipientService.findById(id);
     }
 
+    @GetMapping("/institute/{name}")
+    public Recipient findByInstituteName(@PathVariable("name") String name){
+        LOGGER.info("call to findByInstituteName : " + name);
+        return recipientService.findByInstituteName(name);
+    }
+
     @PostMapping("")
     public @ResponseBody
     Recipient save(@RequestBody Recipient recipient){

@@ -36,12 +36,28 @@ public class DonationController {
     }
 
     @PostMapping("")
-    public void donate(@RequestBody Donation donation){
+    public Donation donate(@RequestBody Donation donation){
         LOGGER.info("call to donate amount: " + donation.getAmount());
-        donationService.save(donation);
-        DonationCase donationCase = donationCaseService.findById(donation.getDonationCaseId());
-        donationCase.setRaisedAmount(donationCase.getRaisedAmount() + donation.getAmount());
-        donationCase.setTotalDonatorNumber(donationCase.getTotalDonatorNumber() + 1);
-        donationCaseService.update(donationCase);
+        if(donation != null){
+            Donation newDonation = donationService.save(donation);
+            DonationCase donationCase = donationCaseService.findById(donation.getDonationCaseId());
+            donationCase.setRaisedAmount(donationCase.getRaisedAmount() + donation.getAmount());
+            donationCase.setTotalDonatorNumber(donationCase.getTotalDonatorNumber() + 1);
+            donationCaseService.update(donationCase);
+            return newDonation;
+        }
+        return donation;
+    }
+    @PostMapping("/update")
+    public Donation updateDonation(@RequestBody Donation donation){
+        LOGGER.info("call to updateDonation amount: " + donation.getAmount());
+        if(donation != null){
+            Donation newDonation = donationService.update(donation);
+            DonationCase donationCase = donationCaseService.findById(donation.getDonationCaseId());
+            donationCase.setRaisedAmount(donationCase.getRaisedAmount() + donation.getAmount());
+            donationCaseService.update(donationCase);
+            return newDonation;
+        }
+        return donation;
     }
 }
