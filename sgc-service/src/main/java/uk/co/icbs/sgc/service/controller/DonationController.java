@@ -43,6 +43,11 @@ public class DonationController {
             DonationCase donationCase = donationCaseService.findById(donation.getDonationCaseId());
             donationCase.setRaisedAmount(donationCase.getRaisedAmount() + donation.getAmount());
             donationCase.setTotalDonatorNumber(donationCase.getTotalDonatorNumber() + 1);
+            if(donationCase.getRaisedAmount() >= donationCase.getAimedAmount()){
+                donationCase.setStatus("Closed");
+            }else{
+                donationCase.setStatus("Processing");
+            }
             donationCaseService.update(donationCase);
             return newDonation;
         }

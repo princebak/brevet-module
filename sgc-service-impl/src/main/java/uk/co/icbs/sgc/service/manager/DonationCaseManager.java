@@ -37,7 +37,7 @@ public class DonationCaseManager implements DonationCaseService {
         logger.info("call to save");
         if(donationCase != null){
             try {
-                donationCase.setStatus((donationCase.getStatus() == null ? Status.CREATED: donationCase.getStatus()));
+                donationCase.setStatus((donationCase.getStatus() == null ? "Opened": donationCase.getStatus()));
                 donationCase.getMetadata().setCreated(new Date());
                 return donationCaseRepository.save(donationCase);
             }catch (Exception e){

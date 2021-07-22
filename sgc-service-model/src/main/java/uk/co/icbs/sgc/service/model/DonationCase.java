@@ -16,13 +16,13 @@ public class DonationCase extends AbstractEntity {
     private String title;
     private String description;
     private String category;
-    private Status status;
+    private String status;
     private String recipientId;
     private String recipientName;
     private Double aimedAmount;
     private Double raisedAmount;
     private Long totalDonatorNumber;
-    private Boolean isUrgent;
+    private Boolean urgent;
 
     public String getId() {
         return id;
@@ -40,8 +40,12 @@ public class DonationCase extends AbstractEntity {
         return category;
     }
 
-    public Status getStatus() {
+    public String getStatus() {
         return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getRecipientName() {
@@ -61,7 +65,7 @@ public class DonationCase extends AbstractEntity {
     }
 
     public Boolean getUrgent() {
-        return isUrgent;
+        return urgent;
     }
 
     public void setRaisedAmount(Double raisedAmount) {
