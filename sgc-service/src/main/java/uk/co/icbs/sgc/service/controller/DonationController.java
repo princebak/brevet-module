@@ -34,6 +34,14 @@ public class DonationController {
         LOGGER.info("call to findAll");
         return donationService.findAll(PageRequest.of(page, size));
     }
+    @GetMapping("/donationCase/{donationCaseId}")
+    public @ResponseBody
+    ResponseModel<Donation> findAllByDonationCaseId(@PathVariable String donationCaseId,
+                                                    @RequestParam(name = "page", defaultValue = "0", required = false) int page,
+                                                    @RequestParam(name = "size", defaultValue = "10", required = false) int size){
+        LOGGER.info("call to findAllByDonationCaseId "+donationCaseId);
+        return donationService.findAllByDonationCaseId(donationCaseId,PageRequest.of(page, size));
+    }
 
     @PostMapping("")
     public Donation donate(@RequestBody Donation donation){
@@ -65,4 +73,5 @@ public class DonationController {
         }
         return donation;
     }
+
 }

@@ -54,13 +54,13 @@ public class DonationCaseController {
         return donationCaseService.findAllByCategory(category, page, size);
     }
 
-    @GetMapping("/recipient/{recipient}")
-    public ResponseModel<DonationCase> findAllByRecipientName(@PathVariable String recipient,
+    @GetMapping("/recipient/{recipientId}")
+    public ResponseModel<DonationCase> findAllByRecipientId(@PathVariable String recipientId,
                                                          @RequestParam(name = "page", defaultValue = "0", required = false) int page,
                                                          @RequestParam(name = "size", defaultValue = "4", required = false) int size){
 
-        LOGGER.info("call to findAllByRecipientName : " + recipient);
-        return donationCaseService.findAllByRecipientId(recipient, page, size);
+        LOGGER.info("call to findAllByRecipientId : " + recipientId);
+        return donationCaseService.findAllByRecipientId(recipientId, page, size);
     }
 
     @GetMapping("/donator/{id}")
