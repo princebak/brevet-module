@@ -12,4 +12,5 @@ public interface RecipientService extends AbstractService<Recipient> {
     ResponseModel<Recipient> findAll(Pageable pageable);
     Recipient findById(String id);
     Recipient findByInstituteName(String name);
+    long count();
 }

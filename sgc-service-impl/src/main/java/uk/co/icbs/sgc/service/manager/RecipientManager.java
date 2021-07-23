@@ -113,4 +113,9 @@ public class RecipientManager implements RecipientService {
         }
         return null;
     }
+
+    @Override
+    public long count() {
+        return recipientRepository.count();
+    }
 }

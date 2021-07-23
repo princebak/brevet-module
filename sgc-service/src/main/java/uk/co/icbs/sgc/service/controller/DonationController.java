@@ -42,6 +42,11 @@ public class DonationController {
         LOGGER.info("call to findAllByDonationCaseId "+donationCaseId);
         return donationService.findAllByDonationCaseId(donationCaseId,PageRequest.of(page, size));
     }
+    @GetMapping("/count")
+    public long count(){
+        LOGGER.info("call to count : ");
+        return donationService.count();
+    }
 
     @PostMapping("")
     public Donation donate(@RequestBody Donation donation){

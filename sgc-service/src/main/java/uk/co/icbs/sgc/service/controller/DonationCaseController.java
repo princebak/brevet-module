@@ -44,6 +44,11 @@ public class DonationCaseController {
         LOGGER.info("call to findById : " + id);
         return donationCaseService.findById(id);
     }
+    @GetMapping("/count")
+    public long count(){
+        LOGGER.info("call to count : ");
+        return donationCaseService.count();
+    }
 
     @GetMapping("/category/{category}")
     public ResponseModel<DonationCase> findAllByCategory(@PathVariable String category,

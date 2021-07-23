@@ -9,4 +9,5 @@ public interface DonatorService extends AbstractService<Donator> {
     Donator findById(String id);
     Donator findByEmail(String email);
     ResponseModel<Donator> findAll(Pageable pageable);
+    long count();
 }

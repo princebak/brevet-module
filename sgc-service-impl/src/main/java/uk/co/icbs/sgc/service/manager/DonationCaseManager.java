@@ -86,6 +86,11 @@ public class DonationCaseManager implements DonationCaseService {
     }
 
     @Override
+    public long count() {
+        return donationCaseRepository.count();
+    }
+
+    @Override
     public DonationCase findById(String id) {
         try {
             DonationCase donationCase = donationCaseRepository.findById(id).isPresent() ? donationCaseRepository.findById(id).get() : null;

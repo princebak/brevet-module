@@ -33,6 +33,12 @@ public class DonatorController {
         return donatorService.findAll();
     }
 
+    @GetMapping("/count")
+    public long count(){
+        LOGGER.info("call to count : ");
+        return donatorService.count();
+    }
+
     @GetMapping("")
     public @ResponseBody
     ResponseModel<Donator> findAll(@RequestParam(name = "page", defaultValue = "0", required = false) int page,

@@ -116,4 +116,9 @@ public class DonationManager implements DonationService {
         }
         return null;
     }
+
+    @Override
+    public long count() {
+        return donationRepository.count();
+    }
 }

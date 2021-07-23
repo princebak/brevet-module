@@ -38,6 +38,12 @@ public class RecipientController {
         return recipientService.findAll(PageRequest.of(page, size));
     }
 
+    @GetMapping("/count")
+    public long count(){
+        LOGGER.info("call to count : ");
+        return recipientService.count();
+    }
+
     @GetMapping("/{id}")
     public Recipient findById(@PathVariable("id") String id){
         LOGGER.info("call to findById : " + id);
