@@ -127,6 +127,11 @@ public class DonationCaseManager implements DonationCaseService {
     }
 
     @Override
+    public List<DonationCase> findAllByStatus(String status) {
+        return donationCaseRepository.findAllByStatus(status);
+    }
+
+    @Override
     public DonationCase update(DonationCase donationCase) {
         if(donationCase != null){
             try {

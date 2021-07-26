@@ -58,6 +58,12 @@ public class DonationCaseController {
         LOGGER.info("call to findAllByCategory : " + category);
         return donationCaseService.findAllByCategory(category, page, size);
     }
+    @GetMapping("/status/{status}")
+    public List<DonationCase> findAllByStatus(@PathVariable String status){
+
+        LOGGER.info("call to findAllByStatus : " + status);
+        return donationCaseService.findAllByStatus(status);
+    }
 
     @GetMapping("/recipient/{recipientId}")
     public ResponseModel<DonationCase> findAllByRecipientId(@PathVariable String recipientId,

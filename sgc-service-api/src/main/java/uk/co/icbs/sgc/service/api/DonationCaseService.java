@@ -2,6 +2,7 @@ package uk.co.icbs.sgc.service.api;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import uk.co.icbs.common.service.model.AbstractService;
 import uk.co.icbs.sgc.service.model.DonationCase;
@@ -16,4 +17,5 @@ public interface DonationCaseService extends AbstractService<DonationCase> {
     ResponseModel<DonationCase> findAllByRecipientId(String recipientName, int page, int size);
     long count();
     List<DonationCase> findAllByDonatorId(String id);
+    List<DonationCase> findAllByStatus(@Param("status") String status);
 }

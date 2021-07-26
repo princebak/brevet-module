@@ -10,6 +10,9 @@ import uk.co.icbs.sgc.service.api.ResponseModel;
 import uk.co.icbs.sgc.service.model.Donation;
 import uk.co.icbs.sgc.service.model.DonationCase;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/api/v1/donations")
 public class DonationController {
@@ -34,7 +37,7 @@ public class DonationController {
         LOGGER.info("call to findAll");
         return donationService.findAll(PageRequest.of(page, size));
     }
-    @GetMapping("/donationCase/{donationCaseId}")
+    @GetMapping("/donation-case/{donationCaseId}")
     public @ResponseBody
     ResponseModel<Donation> findAllByDonationCaseId(@PathVariable String donationCaseId,
                                                     @RequestParam(name = "page", defaultValue = "0", required = false) int page,
@@ -46,6 +49,18 @@ public class DonationController {
     public long count(){
         LOGGER.info("call to count : ");
         return donationService.count();
+    }
+    @GetMapping("/best-donations")
+    public List<Donation> getBestDonations(){
+        LOGGER.info("call to getBestDonations : ");
+        return donationService.findAll().stream().sorted((f1, f2) -> Double.compare(f2.getAmount(), f1.getAmount()))
+                .limit(7).collect(Collectors.toList());
+    }
+
+    @GetMapping("/total-donations-amount")
+    public Double getTotalDonationsAmount(){
+        LOGGER.info("call to totalDonationsAmount");
+        return donationService.findAll().stream().mapToDouble(d -> d.getAmount()).sum();
     }
 
     @PostMapping("")

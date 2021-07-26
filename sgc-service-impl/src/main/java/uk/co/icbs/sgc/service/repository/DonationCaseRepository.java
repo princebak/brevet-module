@@ -9,10 +9,12 @@ import org.springframework.stereotype.Repository;
 import uk.co.icbs.sgc.service.model.DonationCase;
 import uk.co.icbs.sgc.service.model.Donator;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface DonationCaseRepository extends MongoRepository<DonationCase,String>{
+    List<DonationCase> findAllByStatus(@Param("status") String status);
     Page<DonationCase> findAllByCategory(@Param("category") String category, Pageable pageable);
     Page<DonationCase> findAllByRecipientId(@Param("recipientId") String recipientName, Pageable pageable);
     Optional<DonationCase> findById(@Param("id") String id);
