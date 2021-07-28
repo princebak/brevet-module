@@ -10,6 +10,8 @@ import uk.co.icbs.sgc.service.api.ResponseModel;
 import uk.co.icbs.sgc.service.model.Donation;
 import uk.co.icbs.sgc.service.model.DonationCase;
 
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,6 +56,12 @@ public class DonationController {
     public List<Donation> getBestDonations(){
         LOGGER.info("call to getBestDonations : ");
         return donationService.findAll().stream().sorted((f1, f2) -> Double.compare(f2.getAmount(), f1.getAmount()))
+                .limit(7).collect(Collectors.toList());
+    }
+    @GetMapping("/last-donations")
+    public List<Donation> getLastDonations(){
+        LOGGER.info("call to getLastDonations : ");
+        return donationService.findAll().stream().sorted(Comparator.comparing(f -> f.getMetadata().getCreated(),Comparator.reverseOrder()))
                 .limit(7).collect(Collectors.toList());
     }
 
