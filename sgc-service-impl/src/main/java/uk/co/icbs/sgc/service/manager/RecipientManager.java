@@ -3,7 +3,9 @@ package uk.co.icbs.sgc.service.manager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import uk.co.icbs.common.service.model.Status;
 import uk.co.icbs.sgc.service.api.RecipientService;
@@ -31,7 +33,8 @@ public class RecipientManager implements RecipientService {
             try {
                 recipient.setStatus((recipient.getStatus() == null ? Status.CREATED: recipient.getStatus()));
                 recipient.getMetadata().setCreated(new Date());
-                return recipientRepository.save(recipient);
+                 recipientRepository.save(recipient);
+                return recipientRepository.findAll(PageRequest.of(0, 1, Sort.Direction.DESC, "metadata")).getContent().get(0);
             }catch (Exception e){
                 logger.info(e.getMessage());
             }

@@ -87,6 +87,7 @@ public class AdminManager implements AdminService {
 
     @Override
     public Admin findByEmail(String email) {
+        logger.info("call to findByEmail");
         try {
             Admin admin = adminRepository.findByEmail(email).isPresent() ? adminRepository.findByEmail(email).get() : null;
 
