@@ -16,6 +16,7 @@ public class Donation extends AbstractEntity {
     private String donationCaseId;
     private String donationCaseTitle;
     private Double amount;
+    private String Status;
 
     public String getId() {
         return id;
@@ -35,6 +36,10 @@ public class Donation extends AbstractEntity {
 
     public String getDonationCaseId() {
         return donationCaseId;
+    }
+
+    public String getStatus() {
+        return Status;
     }
 
     public String getDonationCaseTitle() {
