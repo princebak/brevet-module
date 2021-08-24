@@ -53,7 +53,7 @@ public class DonationCaseController {
     @GetMapping("/category/{category}")
     public ResponseModel<DonationCase> findAllByCategory(@PathVariable String category,
                                                     @RequestParam(name = "page", defaultValue = "0", required = false) int page,
-                                                    @RequestParam(name = "size", defaultValue = "4", required = false) int size){
+                                                    @RequestParam(name = "size", defaultValue = "9", required = false) int size){
 
         LOGGER.info("call to findAllByCategory : " + category);
         return donationCaseService.findAllByCategory(category, page, size);
@@ -68,7 +68,7 @@ public class DonationCaseController {
     @GetMapping("/recipient/{recipientId}")
     public ResponseModel<DonationCase> findAllByRecipientId(@PathVariable String recipientId,
                                                          @RequestParam(name = "page", defaultValue = "0", required = false) int page,
-                                                         @RequestParam(name = "size", defaultValue = "4", required = false) int size){
+                                                         @RequestParam(name = "size", defaultValue = "9", required = false) int size){
 
         LOGGER.info("call to findAllByRecipientId : " + recipientId);
         return donationCaseService.findAllByRecipientId(recipientId, page, size);
