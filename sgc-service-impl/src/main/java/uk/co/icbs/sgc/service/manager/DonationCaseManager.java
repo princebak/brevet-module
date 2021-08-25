@@ -53,7 +53,7 @@ public class DonationCaseManager implements DonationCaseService {
     @Override
     public ResponseModel<DonationCase> findAll(Pageable pageable) {
         try {
-            Page<DonationCase> donationCases = donationCaseRepository.findAll(pageable);
+            Page<DonationCase> donationCases = donationCaseRepository.findAll(PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(Sort.Direction.DESC, "urgent")));
             return new ResponseModel<>(donationCases.getTotalPages(), donationCases.getTotalElements(), donationCases.getContent());
         }catch (Exception e){
             logger.info(e.getMessage());
@@ -65,7 +65,7 @@ public class DonationCaseManager implements DonationCaseService {
     public ResponseModel<DonationCase> findAllByCategory(String category, int page, int size) {
         if(category != "" && category != null){
             try {
-                Page<DonationCase> donationCases = donationCaseRepository.findAllByCategory(category, PageRequest.of(page, size));
+                Page<DonationCase> donationCases = donationCaseRepository.findAllByCategory(category, PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "urgent")));
                 return new ResponseModel<>(donationCases.getTotalPages(), donationCases.getTotalElements(), donationCases.getContent());
             }catch (Exception e){
                 logger.info(e.getMessage());
