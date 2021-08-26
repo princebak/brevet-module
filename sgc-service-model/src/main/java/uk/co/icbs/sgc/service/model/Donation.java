@@ -16,28 +16,4 @@ public class Donation extends AbstractEntity {
     private String donationCaseId;
     private String donationCaseTitle;
     private Double amount;
-
-    public String getId() {
-        return id;
-    }
-
-    public String getDonatorName() {
-        return donatorName;
-    }
-
-    public Double getAmount() {
-        return amount;
-    }
-
-    public String getDonatorId() {
-        return donatorId;
-    }
-
-    public String getDonationCaseId() {
-        return donationCaseId;
-    }
-
-    public String getDonationCaseTitle() {
-        return donationCaseTitle;
-    }
 }
