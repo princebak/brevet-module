@@ -8,6 +8,7 @@ import uk.co.icbs.sgc.service.api.RecipientService;
 import uk.co.icbs.sgc.service.api.ResponseModel;
 import uk.co.icbs.sgc.service.model.Recipient;
 
+import java.util.Comparator;
 import java.util.List;
 
 @RestController
@@ -60,6 +61,7 @@ public class RecipientController {
     public @ResponseBody
     Recipient save(@RequestBody Recipient recipient){
         LOGGER.info("call to save recipient: " + recipient.getEmail());
+
         return recipientService.save(recipient);
     }
 

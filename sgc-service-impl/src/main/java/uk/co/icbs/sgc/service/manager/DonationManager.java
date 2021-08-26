@@ -56,12 +56,13 @@ public class DonationManager implements DonationService {
     }
 
     @Override
-    public Donation save(Donation donation) {
+    public Donation save(Donation donationToSave) {
         logger.info("call to save");
-        if(donation != null){
+        if(donationToSave != null){
             try {
-                donation.getMetadata().setCreated(new Date());
-                return donationRepository.save(donation);
+                donationToSave.getMetadata().setCreated(new Date());
+                Donation donationSaved = donationRepository.save(donationToSave);
+                return donationSaved;
             }catch (Exception e){
                 logger.info(e.getMessage());
             }

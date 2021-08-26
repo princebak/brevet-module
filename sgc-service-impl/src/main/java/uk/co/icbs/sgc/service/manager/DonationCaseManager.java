@@ -3,9 +3,7 @@ package uk.co.icbs.sgc.service.manager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import uk.co.icbs.common.service.model.Status;
 import uk.co.icbs.sgc.service.api.DonationCaseService;
@@ -39,7 +37,10 @@ public class DonationCaseManager implements DonationCaseService {
             try {
                 donationCase.setStatus((donationCase.getStatus() == null ? "Opened": donationCase.getStatus()));
                 donationCase.getMetadata().setCreated(new Date());
-                return donationCaseRepository.save(donationCase);
+                donationCaseRepository.save(donationCase);
+                Example<DonationCase> exampleMatchingAll = Example.of(donationCase, ExampleMatcher.matchingAll().withIgnoreCase().withIgnorePaths("metadata") );
+                DonationCase donationCase1 = donationCaseRepository.findAll(exampleMatchingAll).get(0);
+                return donationCase1;
             }catch (Exception e){
                 logger.info(e.getMessage());
             }
@@ -51,7 +52,7 @@ public class DonationCaseManager implements DonationCaseService {
     @Override
     public ResponseModel<DonationCase> findAll(Pageable pageable) {
         try {
-            Page<DonationCase> donationCases = donationCaseRepository.findAll(pageable);
+            Page<DonationCase> donationCases = donationCaseRepository.findAll(PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(Sort.Direction.DESC, "urgent")));
             return new ResponseModel<>(donationCases.getTotalPages(), donationCases.getTotalElements(), donationCases.getContent());
         }catch (Exception e){
             logger.info(e.getMessage());
@@ -63,7 +64,7 @@ public class DonationCaseManager implements DonationCaseService {
     public ResponseModel<DonationCase> findAllByCategory(String category, int page, int size) {
         if(category != "" && category != null){
             try {
-                Page<DonationCase> donationCases = donationCaseRepository.findAllByCategory(category, PageRequest.of(page, size));
+                Page<DonationCase> donationCases = donationCaseRepository.findAllByCategory(category, PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "urgent")));
                 return new ResponseModel<>(donationCases.getTotalPages(), donationCases.getTotalElements(), donationCases.getContent());
             }catch (Exception e){
                 logger.info(e.getMessage());
@@ -124,6 +125,11 @@ public class DonationCaseManager implements DonationCaseService {
             logger.info(e.getMessage());
         }
        return null;
+    }
+
+    @Override
+    public List<DonationCase> findAllByStatus(String status) {
+        return donationCaseRepository.findAllByStatus(status);
     }
 
     @Override

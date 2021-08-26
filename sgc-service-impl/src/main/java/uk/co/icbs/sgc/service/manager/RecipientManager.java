@@ -2,12 +2,12 @@ package uk.co.icbs.sgc.service.manager;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import uk.co.icbs.common.service.model.Status;
 import uk.co.icbs.sgc.service.api.RecipientService;
 import uk.co.icbs.sgc.service.api.ResponseModel;
+import uk.co.icbs.sgc.service.model.DonationCase;
 import uk.co.icbs.sgc.service.model.Recipient;
 import uk.co.icbs.sgc.service.repository.RecipientRepository;
 
@@ -31,7 +31,10 @@ public class RecipientManager implements RecipientService {
             try {
                 recipient.setStatus((recipient.getStatus() == null ? Status.CREATED: recipient.getStatus()));
                 recipient.getMetadata().setCreated(new Date());
-                return recipientRepository.save(recipient);
+                 recipientRepository.save(recipient);
+                Example<Recipient> exampleMatchingAll = Example.of(recipient, ExampleMatcher.matchingAll().withIgnoreCase().withIgnorePaths("metadata") );
+                Recipient recipient1 = recipientRepository.findAll(exampleMatchingAll).get(0);
+                return recipient1;
             }catch (Exception e){
                 logger.info(e.getMessage());
             }

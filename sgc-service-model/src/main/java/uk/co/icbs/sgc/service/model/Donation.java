@@ -16,4 +16,5 @@ public class Donation extends AbstractEntity {
     private String donationCaseId;
     private String donationCaseTitle;
     private Double amount;
+    private String status;
 }
