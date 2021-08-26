@@ -3,10 +3,7 @@ package uk.co.icbs.sgc.service.manager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import uk.co.icbs.common.service.model.Status;
 import uk.co.icbs.sgc.service.api.DonationCaseService;
@@ -41,7 +38,9 @@ public class DonationCaseManager implements DonationCaseService {
                 donationCase.setStatus((donationCase.getStatus() == null ? "Opened": donationCase.getStatus()));
                 donationCase.getMetadata().setCreated(new Date());
                 donationCaseRepository.save(donationCase);
-                return donationCaseRepository.findAll(PageRequest.of(0, 1, Sort.Direction.DESC, "metadata")).getContent().get(0);
+                Example<DonationCase> exampleMatchingAll = Example.of(donationCase, ExampleMatcher.matchingAll().withIgnoreCase().withIgnorePaths("metadata") );
+                DonationCase donationCase1 = donationCaseRepository.findAll(exampleMatchingAll).get(0);
+                return donationCase1;
             }catch (Exception e){
                 logger.info(e.getMessage());
             }
