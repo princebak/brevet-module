@@ -58,7 +58,6 @@ public class RecipientManager implements RecipientService {
                 logger.info(e.getMessage());
             }
         }
-
         return null;
     }
 
