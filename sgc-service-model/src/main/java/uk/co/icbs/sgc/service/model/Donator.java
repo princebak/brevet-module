@@ -12,11 +12,4 @@ public class Donator extends User {
     @Id
     private String id;
     private Status status;
-    public String getId() {
-        return id;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
 }
