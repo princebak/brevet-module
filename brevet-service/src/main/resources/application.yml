@@ -1,0 +1,11 @@
+#spring:
+#  profiles:
+#    active: "dev"
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://admin:rOmWe9JQVYD0P019@cluster0-p0dvq.mongodb.net/brevet?retryWrites=true
+server:
+  port: 8081
+

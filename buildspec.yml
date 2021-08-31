@@ -10,8 +10,8 @@ phases:
       - mvn clean package
 artifacts:
   files:
-    - sgc-service/target/sgc-service.jar
-  name: sgc-service.jar
+    - brevet-service/target/brevet-service.jar
+  name: brevet-service.jar
   discard-paths: yes
 cache:
   paths:
