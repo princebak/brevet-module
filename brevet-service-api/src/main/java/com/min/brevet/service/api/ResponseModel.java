@@ -1,11 +1,26 @@
 package com.min.brevet.service.api;
 
-import com.min.common.service.model.AbstractRequestResponse;
-import java.util.List;
+import lombok.Data;
 
-public class ResponseModel<T> extends AbstractRequestResponse<T> {
+@Data
+public class ResponseModel<T>  {
 
-    public ResponseModel(int totalPages, long totalElements, List<T> content){
-        super(totalPages, totalElements, content);
+    boolean error;
+    String errorMessage;
+    int status;
+    T content;
+
+    public ResponseModel(boolean error, String errorMessage, int status, T content){
+        this.error = error;
+        this.errorMessage = errorMessage;
+        this.status = status;
+        this.content = content;
+    }
+
+    public ResponseModel(){
+        error = false;
+        errorMessage = "";
+        status = 0;
+        content = null;
     }
 }

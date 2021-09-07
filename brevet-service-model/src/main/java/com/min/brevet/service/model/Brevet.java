@@ -3,8 +3,6 @@ package com.min.brevet.service.model;
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Data
-@Document
 public class Brevet {
     String Nm_Pr;
     String Cd_Pr;

@@ -12,13 +12,14 @@
     <artifactId>brevet-service</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>brevet-service</name>
-    <description>Secure global clinic services</description>
+    <description>core-module</description>
 
     <properties>
         <java.version>1.8</java.version>
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -79,30 +80,12 @@
             </plugin>
         </plugins>
     </build>
-    <distributionManagement>
-        <snapshotRepository>
-            <id>icbs-snapshots</id>
-            <url>https://nexus.blthouse.tech/repository/icbs-snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>icbs-releases</id>
-            <url>https://nexus.blthouse.tech/repository/icbs-releases</url>
-        </repository>
-    </distributionManagement>
 
     <repositories>
         <repository>
             <id>spring-milestones</id>
             <name>Spring Milestones</name>
             <url>https://repo.spring.io/milestone</url>
-        </repository>
-        <repository>
-            <id>icbs-releases</id>
-            <url>https://nexus.blthouse.tech/repository/icbs-releases</url>
-        </repository>
-        <repository>
-            <id>icbs-snapshots</id>
-            <url>https://nexus.blthouse.tech/repository/icbs-snapshots</url>
         </repository>
     </repositories>
 
