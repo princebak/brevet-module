@@ -119,7 +119,7 @@ public class DocumentManager implements DocumentService {
         ResponseModel<Document> responseModel = new ResponseModel();
         try {
             Optional<Document> document = repository.findByRef(checkResultRequestDto.getCode14());
-            // findAll().stream().filter(result -> result.getCdCdt().equals(checkResultRequestDto.getCode14())).findFirst() ; // repository.findBynID(checkResultRequestDto.getCode());
+            // findAll().stream().filter(result -> result.getCdCdt().equals(checkResultRequestDto.getCode14())).find                          killFirst() ; // repository.findBynID(checkResultRequestDto.getCode());
 
             if (document.isPresent()) {
                 responseModel.setStatus(200);
